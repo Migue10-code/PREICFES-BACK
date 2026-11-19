@@ -14,7 +14,7 @@ const obtenerTodos = async (req, res) => {
 
     try {
 
-        const [rows] = await db.query(`SELECT * FROM Usuarios`);
+        const [rows] = await db.query('SELECT * FROM "Usuarios"');
 
         res.json(rows);
 
