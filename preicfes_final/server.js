@@ -21,6 +21,7 @@ const preguntasRoutes = require('./routes/Preguntas.routes');
 const respuestasRoutes = require('./routes/Respuestas.routes');
 const intentosRoutes = require('./routes/Intentos.routes');
 const intentosrespuestasRoutes = require('./routes/IntentosRespuestas.routes');
+const chatRoutes = require('./routes/Chat.routes');
 
 // Registrar rutas
 app.use('/api/areas', areasRoutes);
@@ -31,6 +32,7 @@ app.use('/api/preguntas', preguntasRoutes);
 app.use('/api/respuestas', respuestasRoutes);
 app.use('/api/intentos', intentosRoutes);
 app.use('/api/intentosrespuestas', intentosrespuestasRoutes);
+app.use('/api/chat', chatRoutes);
 
 // Puerto del servidor
 const PORT = 3000;
