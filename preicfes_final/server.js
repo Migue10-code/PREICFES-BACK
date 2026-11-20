@@ -9,8 +9,11 @@ const app = express();
 // Middleware para recibir JSON
 app.use(express.json());
 
-// Middleware CORS
-app.use(cors());
+// Middleware CORS: si existe FRONTEND_URL (separadas por coma), solo esos sitios pueden llamar a la API
+const origenesPermitidos = process.env.FRONTEND_URL
+    ? process.env.FRONTEND_URL.split(',').map((o) => o.trim())
+    : true;
+app.use(cors({ origin: origenesPermitidos }));
 
 // Importar rutas
 const areasRoutes = require('./routes/Areas.routes');
