@@ -35,8 +35,7 @@ app.use('/api/intentosrespuestas', intentosrespuestasRoutes);
 app.use('/api/chat', chatRoutes);
 
 // Puerto del servidor
-const PORT = 3000;
-
+const PORT = process.env.PORT || 3000;
 // Iniciar servidor
 app.listen(PORT, () => {
     console.log(`Servidor ejecutándose en puerto ${PORT}`);
