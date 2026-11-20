@@ -15,6 +15,8 @@ const origenesPermitidos = process.env.FRONTEND_URL
     : true;
 app.use(cors({ origin: origenesPermitidos }));
 
+const db = require('./config/database');
+
 // Importar rutas
 const areasRoutes = require('./routes/Areas.routes');
 const estudiantesRoutes = require('./routes/Estudiantes.routes');
@@ -36,6 +38,17 @@ app.use('/api/respuestas', respuestasRoutes);
 app.use('/api/intentos', intentosRoutes);
 app.use('/api/intentosrespuestas', intentosrespuestasRoutes);
 app.use('/api/chat', chatRoutes);
+
+// Comprueba que el servidor y la base de datos responden
+app.get('/api/salud', async (req, res) => {
+    try {
+        await db.query('SELECT 1');
+        res.json({ estado: 'ok', baseDeDatos: 'conectada' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ estado: 'error', baseDeDatos: 'sin conexión' });
+    }
+});
 
 // Puerto del servidor
 const PORT = process.env.PORT || 3000;
